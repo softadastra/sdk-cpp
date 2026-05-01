@@ -1,0 +1,104 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "dev-ninja",
+      "displayName": "Dev (Ninja, Release)",
+      "generator": "Ninja",
+      "binaryDir": "build-ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "SDK_CPP_BUILD_EXAMPLES": "ON",
+        "SDK_CPP_BUILD_TESTS": "OFF",
+        "SDK_CPP_INSTALL": "ON",
+        "SDK_CPP_WARNINGS_AS_ERRORS": "OFF"
+      }
+    },
+    {
+      "name": "test-ninja",
+      "displayName": "Tests (Ninja, Release)",
+      "generator": "Ninja",
+      "binaryDir": "build-tests",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "SDK_CPP_BUILD_EXAMPLES": "ON",
+        "SDK_CPP_BUILD_TESTS": "ON",
+        "SDK_CPP_INSTALL": "ON",
+        "SDK_CPP_WARNINGS_AS_ERRORS": "OFF"
+      }
+    },
+    {
+      "name": "strict-ninja",
+      "displayName": "Strict (Ninja, Release, Warnings as Errors)",
+      "generator": "Ninja",
+      "binaryDir": "build-strict",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "SDK_CPP_BUILD_EXAMPLES": "ON",
+        "SDK_CPP_BUILD_TESTS": "ON",
+        "SDK_CPP_INSTALL": "ON",
+        "SDK_CPP_WARNINGS_AS_ERRORS": "ON"
+      }
+    },
+    {
+      "name": "dev-msvc",
+      "displayName": "Dev (MSVC, Release)",
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x64"
+      },
+      "binaryDir": "build-msvc",
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "Release",
+        "SDK_CPP_BUILD_EXAMPLES": "ON",
+        "SDK_CPP_BUILD_TESTS": "OFF",
+        "SDK_CPP_INSTALL": "ON",
+        "SDK_CPP_WARNINGS_AS_ERRORS": "OFF"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "build-ninja",
+      "displayName": "Build (ALL, Ninja)",
+      "configurePreset": "dev-ninja"
+    },
+    {
+      "name": "test-ninja",
+      "displayName": "Build tests (Ninja)",
+      "configurePreset": "test-ninja"
+    },
+    {
+      "name": "strict-ninja",
+      "displayName": "Build strict (Ninja)",
+      "configurePreset": "strict-ninja"
+    },
+    {
+      "name": "build-msvc",
+      "displayName": "Build (ALL, MSVC)",
+      "configurePreset": "dev-msvc",
+      "configuration": "Release"
+    },
+    {
+      "name": "dev-ninja",
+      "displayName": "Alias: dev-ninja → build (Ninja)",
+      "configurePreset": "dev-ninja"
+    },
+    {
+      "name": "dev-msvc",
+      "displayName": "Alias: dev-msvc → build (MSVC)",
+      "configurePreset": "dev-msvc",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test-ninja",
+      "displayName": "Run tests (Ninja)",
+      "configurePreset": "test-ninja",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

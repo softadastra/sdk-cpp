@@ -1,0 +1,9 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(softadastra CONFIG)
+
+include("${CMAKE_CURRENT_LIST_DIR}/sdk-cppTargets.cmake")
+
+check_required_components(sdk-cpp)
